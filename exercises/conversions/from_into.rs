@@ -18,7 +18,6 @@ impl Default for Person {
     }
 }
 
-// I AM NOT DONE
 // Your task is to complete this implementation
 // in order for the line `let p = Person::from("Mark,20")` to compile
 // Please note that you'll need to parse the age component into a `usize`
@@ -34,6 +33,18 @@ impl Default for Person {
 // Otherwise, then return an instantiated Person onject with the results
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        let parts: Vec<&str> = s.split(',').take(2).collect();
+        if s.len() == 0 || parts.len() != 2 || parts[0].is_empty() {
+            return Person::default();
+        }
+        let age: usize = match parts[1].parse() {
+            Ok(n) => n,
+            Err(_) => return Person::default(),
+        };
+        Person {
+            name: String::from(parts[0]),
+            age: age,
+        }
     }
 }
 
@@ -69,5 +80,23 @@ mod tests {
         let p = Person::from("Mark,20");
         assert_eq!(p.name, "Mark");
         assert_eq!(p.age, 20);
+    }
+    #[test]
+    fn test_only_name() {
+        let dp = Person::from("Foo");
+        assert_eq!(dp.name, "John");
+        assert_eq!(dp.age, 30);
+    }
+    #[test]
+    fn test_no_name() {
+        let dp = Person::from(",123");
+        assert_eq!(dp.name, "John");
+        assert_eq!(dp.age, 30);
+    }
+    #[test]
+    fn test_only_comma() {
+        let dp = Person::from(",");
+        assert_eq!(dp.name, "John");
+        assert_eq!(dp.age, 30);
     }
 }
