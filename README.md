@@ -1,6 +1,8 @@
+# rustlings 🦀❤️
+
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/rust-lang/rustlings) 
 
-# rustlings 🦀❤️
+- [My answers](https://github.com/michaelpaul/rustlings/compare/master...my-progress) - A quick overview of my solutions to all exercises
 
 Greetings and welcome to `rustlings`. This project contains small exercises to get you used to reading and writing Rust code. This includes reading and responding to compiler messages!
 
